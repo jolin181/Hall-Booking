@@ -39,7 +39,7 @@ export default function LoginPage() {
           <div className="w-16 h-16 rounded-2xl bg-brand-gradient flex items-center justify-center mx-auto mb-4 shadow-2xl shadow-brand-500/40">
             <Building2 className="w-9 h-9 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-white">HallBooker</h1>
+          <h1 className="text-3xl font-bold text-Black">HallBooker</h1>
           <p className="text-slate-400 mt-2 text-sm">Smart Hall Management System</p>
         </div>
 

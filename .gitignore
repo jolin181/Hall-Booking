@@ -5,8 +5,6 @@ target/
 *.war
 *.ear
 .mvn/timing.properties
-!**/src/main/**/target/
-!**/src/test/**/target/
 
 # IDE
 .idea/
@@ -25,7 +23,7 @@ dist-ssr/
 *.local
 .eslintcache
 
-# Environment
+# Environment / Secrets
 .env
 .env.local
 .env.*.local

@@ -30,25 +30,24 @@ public class SecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
 
-    @Value("${app.cors.allowed-origins}")
+    @Value("${APP_CORS_ALLOWED_ORIGINS}")
     private String allowedOrigins;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(AbstractHttpConfigurer::disable)
-            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**", "/api/health", "/ws/**", "/error").permitAll()
-                .requestMatchers("/api/admin/**").hasRole("SUPERADMIN")
-                .requestMatchers(HttpMethod.POST, "/api/bookings/*/cancel").hasRole("SUPERADMIN")
-                .requestMatchers("/api/bookings/**").hasAnyRole("ADMIN", "SUPERADMIN")
-                .requestMatchers("/api/halls/**").hasAnyRole("ADMIN", "SUPERADMIN")
-                .requestMatchers("/api/notifications/**").hasAnyRole("ADMIN", "SUPERADMIN")
-                .anyRequest().authenticated()
-            )
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/auth/**", "/api/health", "/ws/**", "/error").permitAll()
+                        .requestMatchers("/api/admin/**").hasRole("SUPERADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/bookings/*/cancel").hasRole("SUPERADMIN")
+                        .requestMatchers("/api/bookings/**").hasAnyRole("ADMIN", "SUPERADMIN")
+                        .requestMatchers("/api/halls/**").hasAnyRole("ADMIN", "SUPERADMIN")
+                        .requestMatchers("/api/notifications/**").hasAnyRole("ADMIN", "SUPERADMIN")
+                        .anyRequest().authenticated())
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
