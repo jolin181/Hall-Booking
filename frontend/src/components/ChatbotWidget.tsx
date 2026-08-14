@@ -25,7 +25,7 @@ export function ChatbotWidget() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Only render for authenticated Admins and Super Admins
-  if (!user || (user.role !== 'ADMIN' && user.role !== 'SUPER_ADMIN')) {
+  if (!user || (user.role !== 'ADMIN' && user.role !== 'SUPERADMIN')) {
     return null;
   }
 

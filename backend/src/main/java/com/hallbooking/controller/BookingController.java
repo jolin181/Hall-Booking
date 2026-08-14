@@ -52,6 +52,7 @@ public class BookingController {
     }
 
     @PostMapping("/{id}/cancel")
+    @org.springframework.security.access.prepost.PreAuthorize("hasRole('SUPERADMIN')")
     public ResponseEntity<BookingDto> cancelBooking(
             @PathVariable Long id,
             @AuthenticationPrincipal User currentUser) {

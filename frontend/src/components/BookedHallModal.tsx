@@ -17,8 +17,8 @@ export default function BookedHallModal({ hall, booking, onClose, onRefresh }: P
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
 
-  // Can only cancel own bookings
-  const canCancel = user?.id === booking.bookedBy.id;
+  // Super Admin only for cancellations
+  const canCancel = user?.role === 'SUPERADMIN';
 
   const handleCancel = async () => {
     if (!confirm('Are you sure you want to cancel this booking?')) return;

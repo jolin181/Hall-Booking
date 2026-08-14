@@ -17,7 +17,7 @@ public class ChatbotController {
     private final ChatbotService chatbotService;
 
     @PostMapping("/query")
-    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPERADMIN')")
     public ResponseEntity<ChatbotResponse> query(@Valid @RequestBody ChatbotRequest request) {
         ChatbotResponse response = chatbotService.processQuery(request.getMessage());
         return ResponseEntity.ok(response);

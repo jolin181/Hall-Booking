@@ -36,7 +36,8 @@ public class HallService {
 
     public List<HallDto> getAvailableHalls(Integer capacity, LocalDate date,
                                             LocalTime startTime, LocalTime endTime) {
-        return hallRepository.findAvailableHalls(capacity, date, startTime, endTime,
+        Integer searchCapacity = capacity != null ? capacity : 1;
+        return hallRepository.findAvailableHalls(searchCapacity, date, startTime, endTime,
                         Booking.BookingStatus.ACTIVE)
                 .stream()
                 .map(this::toDto)

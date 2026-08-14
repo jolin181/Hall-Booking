@@ -101,10 +101,8 @@ public class BookingService {
             throw new IllegalStateException("Booking is already cancelled");
         }
 
-        // Only allow users to cancel their own bookings
-        if (!booking.getBookedBy().getId().equals(cancelledByUser.getId())) {
-            throw new IllegalStateException("You can only cancel your own bookings");
-        }
+        // Note: BookingController restricts this endpoint to SUPERADMIN only
+        // so we don't need to check if they own the booking. They can cancel any booking.
 
         booking.setStatus(Booking.BookingStatus.CANCELLED);
         booking.setCancelledBy(cancelledByUser);

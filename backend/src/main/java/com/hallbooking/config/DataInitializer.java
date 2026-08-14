@@ -89,14 +89,14 @@ public class DataInitializer implements CommandLineRunner {
     private void seedSuperAdmin() {
         String superAdminEmail = "super@hallbooker.com";
         if (userRepository.existsByEmail(superAdminEmail)) {
-            log.info("Super Admin already exists, skipping.");
+            User existingAdmin = userRepository.findByEmail(superAdminEmail).orElseThrow();
+            existingAdmin.setPasswordHash(passwordEncoder.encode("admin123"));
+            userRepository.save(existingAdmin);
+            log.info("Super Admin already exists, updated password to admin123.");
             return;
         }
 
-        // Generate a secure random password
-        byte[] randomBytes = new byte[18];
-        new SecureRandom().nextBytes(randomBytes);
-        String rawPassword = Base64.getUrlEncoder().withoutPadding().encodeToString(randomBytes);
+        String rawPassword = "admin123";
 
         User superAdmin = User.builder()
                 .name("Super Admin")
