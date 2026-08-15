@@ -287,29 +287,18 @@ export default function DashboardPage() {
 
                 {/* Action Buttons */}
                 <div className="mt-4 pt-4 border-t border-slate-100 flex-1 flex flex-col justify-end gap-2">
-                  {status === 'free' ? (
-                    <>
-                      <button
-                        onClick={() => setBookingModal({ hall })}
-                        className="w-full py-2.5 text-sm font-bold text-white bg-brand-500 hover:bg-brand-600 rounded-xl transition-colors"
-                      >
-                        Book Now
-                      </button>
-                      <button
-                        onClick={() => setHallBookingsModal({ hall })}
-                        className="w-full py-2 text-sm font-bold text-brand-600 border border-brand-200 rounded-xl hover:bg-brand-50 transition-colors"
-                      >
-                        Show Bookings
-                      </button>
-                    </>
-                  ) : (
-                    <button
-                      onClick={() => setHallBookingsModal({ hall })}
-                      className="w-full py-2.5 text-sm font-bold text-brand-600 border border-brand-200 rounded-xl hover:bg-brand-50 transition-colors"
-                    >
-                      Show Bookings
-                    </button>
-                  )}
+                  <button
+                    onClick={() => setBookingModal({ hall })}
+                    className="w-full py-2.5 text-sm font-bold text-white bg-brand-500 hover:bg-brand-600 rounded-xl transition-colors"
+                  >
+                    Book Now
+                  </button>
+                  <button
+                    onClick={() => setHallBookingsModal({ hall })}
+                    className={`w-full py-2 text-sm font-bold text-brand-600 border border-brand-200 rounded-xl hover:bg-brand-50 transition-colors ${status === 'free' ? 'py-2' : 'py-2.5'}`}
+                  >
+                    Show Bookings
+                  </button>
                 </div>
               </div>
             </div>
